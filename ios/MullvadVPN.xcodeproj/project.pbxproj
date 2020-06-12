@@ -64,8 +64,6 @@
 		5888AD83227B11080051EB06 /* SelectLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5888AD82227B11080051EB06 /* SelectLocationCell.swift */; };
 		5888AD87227B17950051EB06 /* SelectLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5888AD86227B17950051EB06 /* SelectLocationController.swift */; };
 		5888AD89227B18C40051EB06 /* RelayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5888AD88227B18C40051EB06 /* RelayList.swift */; };
-		588AE72F2362001F009F9F2E /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588AE72E2362001F009F9F2E /* MutuallyExclusive.swift */; };
-		588AE730236200E2009F9F2E /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588AE72E2362001F009F9F2E /* MutuallyExclusive.swift */; };
 		588D2FE3248AC27F00E313F7 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E973DD24850EB600096F90 /* AsyncOperation.swift */; };
 		58906DE02445C7A5002F0673 /* NEProviderStopReason+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58906DDF2445C7A5002F0673 /* NEProviderStopReason+Debug.swift */; };
 		5896AE7E246ACE65005B36CB /* KeychainAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FAEDEB245059F000CB0F5B /* KeychainAttributes.swift */; };
@@ -243,7 +241,6 @@
 		5888AD82227B11080051EB06 /* SelectLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationCell.swift; sourceTree = "<group>"; };
 		5888AD86227B17950051EB06 /* SelectLocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationController.swift; sourceTree = "<group>"; };
 		5888AD88227B18C40051EB06 /* RelayList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayList.swift; sourceTree = "<group>"; };
-		588AE72E2362001F009F9F2E /* MutuallyExclusive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutuallyExclusive.swift; sourceTree = "<group>"; };
 		58906DDF2445C7A5002F0673 /* NEProviderStopReason+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NEProviderStopReason+Debug.swift"; sourceTree = "<group>"; };
 		5894E725236B2801008A2793 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		5896AE83246D5889005B36CB /* CustomDateComponentsFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateComponentsFormatting.swift; sourceTree = "<group>"; };
@@ -426,6 +423,7 @@
 				5896AE83246D5889005B36CB /* CustomDateComponentsFormatting.swift */,
 				582BB1B0229569620055B6EF /* CustomNavigationBar.swift */,
 				58C6B35D22BBBFE3003C19AD /* Data+HexCoding.swift */,
+				58B9EB142489139B00095626 /* DisplayChainedError.swift */,
 				5873884C239E6D7E00E96C4E /* EmbeddedViewContainerView.swift */,
 				58FD5BF32428C67600112C88 /* InAppPurchaseButton.swift */,
 				58CE5E6F224146210008646E /* Info.plist */,
@@ -449,7 +447,6 @@
 				58ADDB3D227B1CD900FAFEA7 /* MullvadRpc.swift */,
 				58FBDAAA22A52DC500EB69A3 /* MullvadVPN-Bridging-Header.h */,
 				5866F39B2243B82D00168AE5 /* MullvadVPN.entitlements */,
-				588AE72E2362001F009F9F2E /* MutuallyExclusive.swift */,
 				58906DDF2445C7A5002F0673 /* NEProviderStopReason+Debug.swift */,
 				5811DE4F239014550011EB53 /* NEVPNStatus+Debug.swift */,
 				5845F841236CBACD00B2D93C /* PacketTunnelIpc.swift */,
@@ -477,10 +474,10 @@
 				581CBCED229826FD00727D7F /* StaticTableViewDataSource.swift */,
 				5807E2BF2432038B00F5FF30 /* String+Split.swift */,
 				5862805322428EF100F5A6E1 /* TranslucentButtonBlurView.swift */,
-				587AD7C523421D7000E93A53 /* TunnelSettings.swift */,
-				58AEEF6A2344A46200C9BBD5 /* TunnelSettingsManager.swift */,
 				5845F837236C466400B2D93C /* TunnelControlViewController.swift */,
 				5835B7CB233B76CB0096D79F /* TunnelManager.swift */,
+				587AD7C523421D7000E93A53 /* TunnelSettings.swift */,
+				58AEEF6A2344A46200C9BBD5 /* TunnelSettingsManager.swift */,
 				587CBFE222807F530028DED3 /* UIColor+Helpers.swift */,
 				58CCA0152242560B004F3011 /* UIColor+Palette.swift */,
 				58FD5BF12424F7D700112C88 /* UserInterfaceInteractionRestriction.swift */,
@@ -488,7 +485,6 @@
 				58B8743122B25A7600015324 /* WireguardAssociatedAddresses.swift */,
 				5877152F23981F7B001F8237 /* WireguardKeysViewController.swift */,
 				58C6B35322BB87C4003C19AD /* WireguardPrivateKey.swift */,
-				58B9EB142489139B00095626 /* DisplayChainedError.swift */,
 			);
 			path = MullvadVPN;
 			sourceTree = "<group>";
@@ -864,7 +860,6 @@
 				58F840AF2464382C0044E708 /* KeychainItemRevision.swift in Sources */,
 				587425C12299833500CA2045 /* RootContainerViewController.swift in Sources */,
 				5896AE84246D5889005B36CB /* CustomDateComponentsFormatting.swift in Sources */,
-				588AE72F2362001F009F9F2E /* MutuallyExclusive.swift in Sources */,
 				5888AD89227B18C40051EB06 /* RelayList.swift in Sources */,
 				587AD7C623421D7000E93A53 /* TunnelSettings.swift in Sources */,
 				58FD5BF024238EB300112C88 /* SKProduct+Formatting.swift in Sources */,
@@ -886,7 +881,6 @@
 				58FAEE0324533ABE00CB0F5B /* KeychainReturn.swift in Sources */,
 				58BFA5CD22A7CE1F00A6173D /* ApplicationConfiguration.swift in Sources */,
 				58BFA5C222A7C92900A6173D /* JsonRpc.swift in Sources */,
-				588AE730236200E2009F9F2E /* MutuallyExclusive.swift in Sources */,
 				58F840B02464382C0044E708 /* KeychainItemRevision.swift in Sources */,
 				58C6B35122BB7CFD003C19AD /* IPAddressRange.swift in Sources */,
 				587AD7C723421D8600E93A53 /* TunnelSettings.swift in Sources */,
