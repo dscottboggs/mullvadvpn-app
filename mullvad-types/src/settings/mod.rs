@@ -48,7 +48,7 @@ pub struct Settings {
     /// might be located.
     pub tunnel_options: TunnelOptions,
     /// Whether to notify users of beta updates.
-    pub show_beta_releases: bool,
+    show_beta_releases: Option<bool>,
     /// Specifies settings schema version
     #[cfg_attr(target_os = "android", jnix(skip))]
     settings_version: migrations::SettingsVersion,
@@ -70,7 +70,7 @@ impl Default for Settings {
             block_when_disconnected: false,
             auto_connect: false,
             tunnel_options: TunnelOptions::default(),
-            show_beta_releases: false,
+            show_beta_releases: Some(false),
             settings_version: migrations::SettingsVersion::V2,
         }
     }
@@ -149,6 +149,14 @@ impl Settings {
             false
         }
     }
+
+    pub fn show_beta_releases(&self) -> bool {
+        self.show_beta_releases.unwrap_or(false)
+    }
+
+    pub fn set_show_beta_releases(&mut self, show_beta_releases: bool) {
+        self.show_beta_releases = Some(show_beta_releases);
+    }
 }
 
 /// TunnelOptions holds configuration data that applies to all kinds of tunnels.
@@ -180,5 +188,61 @@ impl Default for TunnelOptions {
                 enable_ipv6: cfg!(target_os = "android"),
             },
         }
+    }
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    fn test_deserialization_of_2020_4_format() {
+        let old_settings = br#"{
+              "account_token": "0000000000000000",
+              "relay_settings": {
+                "normal": {
+                  "location": {
+                    "only": {
+                      "country": "gb"
+                    }
+                  },
+                  "tunnel_protocol": {
+                    "only": "wireguard"
+                  },
+                  "wireguard_constraints": {
+                    "port": "any"
+                  },
+                  "openvpn_constraints": {
+                    "port": "any",
+                    "protocol": "any"
+                  }
+                }
+              },
+              "bridge_settings": {
+                "normal": {
+                  "location": "any"
+                }
+              },
+              "bridge_state": "auto",
+              "allow_lan": true,
+              "block_when_disconnected": false,
+              "auto_connect": true,
+              "tunnel_options": {
+                "openvpn": {
+                  "mssfix": null
+                },
+                "wireguard": {
+                  "mtu": null,
+                  "automatic_rotation": null
+                },
+                "generic": {
+                  "enable_ipv6": true
+                }
+              },
+              "settings_version": 2,
+              "show_beta_releases": null
+        }"#;
+
+        let _ = Settings::load_from_bytes(old_settings).unwrap();
     }
 }
