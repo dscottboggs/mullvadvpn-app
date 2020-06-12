@@ -48,7 +48,8 @@ pub struct Settings {
     /// might be located.
     pub tunnel_options: TunnelOptions,
     /// Whether to notify users of beta updates.
-    show_beta_releases: Option<bool>,
+    #[serde(deserialize_with = "deserialize_show_beta_releases")]
+    pub show_beta_releases: bool,
     /// Specifies settings schema version
     #[cfg_attr(target_os = "android", jnix(skip))]
     settings_version: migrations::SettingsVersion,
@@ -70,7 +71,7 @@ impl Default for Settings {
             block_when_disconnected: false,
             auto_connect: false,
             tunnel_options: TunnelOptions::default(),
-            show_beta_releases: Some(false),
+            show_beta_releases: false,
             settings_version: migrations::SettingsVersion::V2,
         }
     }
@@ -149,14 +150,6 @@ impl Settings {
             false
         }
     }
-
-    pub fn show_beta_releases(&self) -> bool {
-        self.show_beta_releases.unwrap_or(false)
-    }
-
-    pub fn set_show_beta_releases(&mut self, show_beta_releases: bool) {
-        self.show_beta_releases = Some(show_beta_releases);
-    }
 }
 
 /// TunnelOptions holds configuration data that applies to all kinds of tunnels.
@@ -189,6 +182,10 @@ impl Default for TunnelOptions {
             },
         }
     }
+}
+
+fn deserialize_show_beta_releases<'de, D: serde::de::Deserializer<'de>>(field: D) -> std::result::Result<bool, D::Error> {
+    Option::deserialize(field).map(|value| value.unwrap_or(false))
 }
 
 #[cfg(test)]

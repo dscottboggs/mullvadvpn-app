@@ -70,7 +70,7 @@ impl super::SettingsMigration for Migration {
                 block_when_disconnected: old.block_when_disconnected,
                 auto_connect: old.auto_connect,
                 tunnel_options: old.tunnel_options,
-                show_beta_releases: Some(false),
+                show_beta_releases: false,
                 settings_version: super::SettingsVersion::V2,
             }),
             VersionedSettings::V2(new) => VersionedSettings::V2(new),
